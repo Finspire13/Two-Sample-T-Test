@@ -6,11 +6,13 @@
     <title>Online Demo</title>
 </head>
 <body>
-    <h1>Enter Your Wake Up Time</h1>
+    <h1>T-Test Demo: Do differnet genders have different wake up time?</h1>
     <form action="/submit" method="post">
-        <input type="number" name="number" required>
 
-		  <p>Please select your gender:</p>
+    	<label for="wkp-time">Enter your wake up time: </label>
+		<input id="wkp-time" type="time" name="wkp-time" value="07:30" />
+
+		  <p>Select your gender:</p>
 		  <input type="radio" id="female" name="gender" value="female">
 		  <label for="female">Female</label><br>
 		  <input type="radio" id="male" name="gender" value="male">
@@ -18,6 +20,7 @@
 		  <input type="radio" id="nonbinary" name="gender" value="nonbinary">
 		  <label for="nonbinary">Non-binary</label>
 
+		<br>
         <button type="submit">Submit</button>
     </form>
 </body>

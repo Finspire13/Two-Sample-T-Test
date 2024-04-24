@@ -11,8 +11,8 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    number = int(request.form['number'])
-    gender = int(request.form['gender'])
+    number = str(request.form['wkp-time'])
+    gender = str(request.form['gender'])
     numbers.append(number)
     genders.append(gender)
     return 'Submitted Successfully!'
