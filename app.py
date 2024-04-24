@@ -74,7 +74,7 @@ def index():
         pv23 = ttest_ind(sample2, sample3, equal_var=False).pvalue
         dsp_line6 = f'P-Value: {pv23:.6f} (Male vs. Non-Binary)'
     else:
-        dsp_line6 = f'P-Value: 'No enough data' (Male vs. Non-Binary)'
+        dsp_line6 = f'P-Value: No enough data (Male vs. Non-Binary)'
 
     # output = str(all_samples)
     # print(all_samples)
