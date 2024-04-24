@@ -86,7 +86,7 @@ def index():
 #         return_text += f'{numbers[i]}, {genders[i]}\n'
 #     return return_text
 
-@app.route('/reset')
+@app.route('/reset_secure')
 def reset():
     db.drop_all()
     db.create_all()
