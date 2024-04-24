@@ -3,4 +3,5 @@ numpy
 scipy
 gunicorn
 Flask-SQLAlchemy
+SQLAlchemy==2.0.25
 psycopg2
