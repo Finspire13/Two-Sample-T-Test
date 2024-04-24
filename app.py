@@ -26,11 +26,11 @@ def result():
     #     return f'The average value is: {avg}'
     return '_'.join(numbers) + '_'.join(genders)
 
-@app.route('/reset')
-def reset():
-    numbers.clear()
-    genders.clear()
-    return 'Reset Successfully!'
+# @app.route('/reset')
+# def reset():
+#     numbers.clear()
+#     genders.clear()
+#     return 'Reset Successfully!'
 
 if __name__ == '__main__':
     app.run(debug=True)
