@@ -41,17 +41,17 @@ def index():
     sample2 = [convert_time(i.time) for i in all_samples if i.gender == 'male']
     sample3 = [convert_time(i.time) for i in all_samples if i.gender == 'nonbinary']
 
-    if len(sample1) > 0 and len(sample2) > 0:
+    if len(sample1) > 1 and len(sample2) > 1:
         pv12 = ttest_ind(sample1, sample2, equal_var=False).pvalue
     else:
         pv12 = 'No enough data'
 
-    if len(sample1) > 0 and len(sample3) > 0:
+    if len(sample1) > 1 and len(sample3) > 1:
         pv13 = ttest_ind(sample1, sample3, equal_var=False).pvalue
     else:
         pv13 = 'No enough data'
-        
-    if len(sample2) > 0 and len(sample3) > 0:
+
+    if len(sample2) > 1 and len(sample3) > 1:
         pv23 = ttest_ind(sample2, sample3, equal_var=False).pvalue
     else:
         pv23 = 'No enough data'
@@ -60,9 +60,9 @@ def index():
     dsp_line2 = f'Male - Mean: {np.mean(sample2)}, Std: {np.std(sample2)}, Number: {len(sample2)}'
     dsp_line3 = f'Non-Binary - Mean: {np.mean(sample3)}, Std: {np.std(sample3)}, Number: {len(sample3)}'
 
-    dsp_line4 = f'Female vs. Male - P-Value: {pv12}'
-    dsp_line5 = f'Female vs. Non-Binary - P-Value: {pv13}'
-    dsp_line6 = f'Male vs. Non-Binary - P-Value: {pv23}'
+    dsp_line4 = f'P-Value: {pv12} (Female vs. Male)'
+    dsp_line5 = f'P-Value: {pv13} (Female vs. Non-Binary)'
+    dsp_line6 = f'P-Value: {pv23} (Male vs. Non-Binary)'
 
     # output = str(all_samples)
     # print(all_samples)
@@ -71,7 +71,7 @@ def index():
     # for i in range(len(numbers)):
     #     output += f'{numbers[i]}, {genders[i]}\n'
 
-    return render_template('index.html', all_lines=[dsp_line1, dsp_line2, dsp_line3, dsp_line4, dsp_line5, dsp_line6])
+    return render_template('index.html', all_lines_1=[dsp_line1, dsp_line2, dsp_line3], all_lines_2=[dsp_line4, dsp_line5, dsp_line6])
 
 
 # @app.route('/submit', methods=['POST'])
