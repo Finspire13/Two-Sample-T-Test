@@ -56,13 +56,13 @@ def index():
     else:
         pv23 = 'No enough data'
 
-    dsp_line1 = f'Female - Mean: {np.mean(sample1)}, Std: {np.std(sample1)}, Number: {len(sample1)}'
-    dsp_line2 = f'Male - Mean: {np.mean(sample2)}, Std: {np.std(sample2)}, Number: {len(sample2)}'
-    dsp_line3 = f'Non-Binary - Mean: {np.mean(sample3)}, Std: {np.std(sample3)}, Number: {len(sample3)}'
+    dsp_line1 = f'Female - Mean: {np.mean(sample1):.2f}, Std: {np.std(sample1):.3f}, Number: {len(sample1)}'
+    dsp_line2 = f'Male - Mean: {np.mean(sample2):.2f}, Std: {np.std(sample2):.3f}, Number: {len(sample2)}'
+    dsp_line3 = f'Non-Binary - Mean: {np.mean(sample3):.2f}, Std: {np.std(sample3):.3f}, Number: {len(sample3)}'
 
-    dsp_line4 = f'P-Value: {pv12} (Female vs. Male)'
-    dsp_line5 = f'P-Value: {pv13} (Female vs. Non-Binary)'
-    dsp_line6 = f'P-Value: {pv23} (Male vs. Non-Binary)'
+    dsp_line4 = f'P-Value: {pv12:.6f} (Female vs. Male)'
+    dsp_line5 = f'P-Value: {pv13:.6f} (Female vs. Non-Binary)'
+    dsp_line6 = f'P-Value: {pv23:.6f} (Male vs. Non-Binary)'
 
     # output = str(all_samples)
     # print(all_samples)
