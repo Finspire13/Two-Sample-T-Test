@@ -38,11 +38,9 @@
     </div>
  -->
 
-    {% for sample in all_samples %}
+    {% for line in all_lines %}
         <div>
-            <p><b>{{ sample.id }}</b></p>
-            <p><b>{{ sample.time }}</b></p>
-            <p><b>{{ sample.gender }}</b></p>
+            <p><b>{{ line }}</b></p>
         </div>
     {% endfor %}
 

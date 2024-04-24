@@ -3,6 +3,8 @@ import os
 from flask import url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
+import numpy as np
+from scipy.stats import ttest_ind
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -19,6 +21,10 @@ class Sample(db.Model):
     def __repr__(self):
         return f'<Sample {self.id}>'
 
+def convert_time(time):
+    hour, minute = time.split(':')
+    return float(hour) + float(minute) / 60
+
 @app.route('/', methods=["GET","POST"])
 def index():
 
@@ -30,6 +36,34 @@ def index():
         db.session.commit()
 
     all_samples = Sample.query.all()
+
+    sample1 = [convert_time(i.time) for i in all_samples if i.gender == 'female']
+    sample2 = [convert_time(i.time) for i in all_samples if i.gender == 'male']
+    sample3 = [convert_time(i.time) for i in all_samples if i.gender == 'nonbinary']
+
+    if len(sample1) > 0 and len(sample2) > 0:
+        pv12 = ttest_ind(sample1, sample2, equal_var=False).pvalue
+    else:
+        pv12 = 'No enough data'
+
+    if len(sample1) > 0 and len(sample3) > 0:
+        pv13 = ttest_ind(sample1, sample3, equal_var=False).pvalue
+    else:
+        pv13 = 'No enough data'
+        
+    if len(sample2) > 0 and len(sample3) > 0:
+        pv23 = ttest_ind(sample2, sample3, equal_var=False).pvalue
+    else:
+        pv23 = 'No enough data'
+
+    dsp_line1 = f'Female - Mean: {np.mean(sample1)}, Std: {np.std(sample1)}, Number: {len(sample1)}'
+    dsp_line2 = f'Male - Mean: {np.mean(sample2)}, Std: {np.std(sample2)}, Number: {len(sample2)}'
+    dsp_line3 = f'Non-Binary - Mean: {np.mean(sample3)}, Std: {np.std(sample3)}, Number: {len(sample3)}'
+
+    dsp_line4 = f'Female vs. Male - P-Value: {pv12}'
+    dsp_line5 = f'Female vs. Non-Binary - P-Value: {pv13}'
+    dsp_line6 = f'Male vs. Non-Binary - P-Value: {pv23}'
+
     # output = str(all_samples)
     # print(all_samples)
 
@@ -37,7 +71,7 @@ def index():
     # for i in range(len(numbers)):
     #     output += f'{numbers[i]}, {genders[i]}\n'
 
-    return render_template('index.html', all_samples=all_samples)
+    return render_template('index.html', all_lines=[dsp_line1, dsp_line2, dsp_line3, dsp_line4, dsp_line5, dsp_line6])
 
 
 # @app.route('/submit', methods=['POST'])
