@@ -19,18 +19,16 @@ def submit():
 
 @app.route('/result')
 def result():
-    # if len(numbers) < 10:
-    #     return 'Not enough data yet!'
-    # else:
-    #     avg = sum(numbers) / len(numbers)
-    #     return f'The average value is: {avg}'
-    return '_'.join(numbers) + '_'.join(genders)
+    return_text = ''
+    for i in range(len(numbers)):
+        return_text += f'{numbers[i]}, {genders[i]}\n'
+    return return_text
 
-# @app.route('/reset')
-# def reset():
-#     numbers.clear()
-#     genders.clear()
-#     return 'Reset Successfully!'
+@app.route('/reset')
+def reset():
+    numbers = []
+    genders = []
+    return 'Reset Successfully!'
 
 if __name__ == '__main__':
     app.run(debug=True)
