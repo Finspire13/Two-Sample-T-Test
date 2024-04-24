@@ -6,9 +6,18 @@
     <title>Online Demo</title>
 </head>
 <body>
-    <h1>Enter a Number</h1>
+    <h1>Enter Your Wake Up Time</h1>
     <form action="/submit" method="post">
         <input type="number" name="number" required>
+
+		  <p>Please select your gender:</p>
+		  <input type="radio" id="female" name="gender" value="female">
+		  <label for="female">Female</label><br>
+		  <input type="radio" id="male" name="gender" value="male">
+		  <label for="male">Male</label><br>
+		  <input type="radio" id="nonbinary" name="gender" value="nonbinary">
+		  <label for="nonbinary">Non-binary</label>
+
         <button type="submit">Submit</button>
     </form>
 </body>

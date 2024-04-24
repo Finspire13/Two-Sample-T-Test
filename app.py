@@ -3,6 +3,7 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 numbers = []
+genders = []
 
 @app.route('/')
 def index():
@@ -11,16 +12,26 @@ def index():
 @app.route('/submit', methods=['POST'])
 def submit():
     number = int(request.form['number'])
+    gender = int(request.form['gender'])
     numbers.append(number)
-    return 'Number submitted successfully!'
+    genders.append(gender)
+    return 'Submitted Successfully!'
 
-@app.route('/average')
-def average():
-    if len(numbers) < 10:
-        return 'Not enough data yet!'
-    else:
-        avg = sum(numbers) / len(numbers)
-        return f'The average value is: {avg}'
+@app.route('/result')
+def result():
+    # if len(numbers) < 10:
+    #     return 'Not enough data yet!'
+    # else:
+    #     avg = sum(numbers) / len(numbers)
+    #     return f'The average value is: {avg}'
+    return f'{numbers}, {genders}'
+
+
+@app.route('/reset')
+def reset():
+    numbers.clear()
+    genders.clear()
+    return 'Reset Successfully!'
 
 if __name__ == '__main__':
     app.run(debug=True)
