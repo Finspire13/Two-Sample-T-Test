@@ -26,7 +26,7 @@
 
     <h1>Real-Time Test Outcome:</h1>
 
-
+<!-- 
 	<div id="output"></div>
         <p>Output 1: {{output}}</p>
     </div>
@@ -36,6 +36,15 @@
 	<div id="output"></div>
         <p>Output 3: {{output}}</p>
     </div>
+ -->
+
+    {% for sample in all_samples %}
+        <div>
+            <p><b>{{ sample.id }}</b></p>
+            <p><b>{{ sample.time }}</b></p>
+            <p><b>{{ sample.gender }}</b></p>
+        </div>
+    {% endfor %}
 
 </body>
 </html>

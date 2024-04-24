@@ -30,14 +30,14 @@ def index():
         db.session.commit()
 
     all_samples = Sample.query.all()
-    output = str(all_samples)
-    print(all_samples)
+    # output = str(all_samples)
+    # print(all_samples)
 
     # output = ''
     # for i in range(len(numbers)):
     #     output += f'{numbers[i]}, {genders[i]}\n'
 
-    return render_template('index.html', output=output)
+    return render_template('index.html', all_samples=all_samples)
 
 
 # @app.route('/submit', methods=['POST'])
