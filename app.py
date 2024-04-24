@@ -87,7 +87,7 @@ def index():
 #     return return_text
 
 @app.route('/reset_secure')
-def reset():
+def reset_secure():
     db.drop_all()
     db.create_all()
     db.session.commit()
