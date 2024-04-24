@@ -41,28 +41,40 @@ def index():
     sample2 = [convert_time(i.time) for i in all_samples if i.gender == 'male']
     sample3 = [convert_time(i.time) for i in all_samples if i.gender == 'nonbinary']
 
+
+
+    if len(sample1) > 1:
+        dsp_line1 = f'Female - Mean: {np.mean(sample1):.2f}, Std: {np.std(sample1):.3f}, Number: {len(sample1)}'
+    else:
+        dsp_line1 = f'Female - Mean: {np.mean(sample1)}, Std: {np.std(sample1)}, Number: {len(sample1)}'
+
+    if len(sample2) > 1:
+        dsp_line2 = f'Male - Mean: {np.mean(sample2):.2f}, Std: {np.std(sample2):.3f}, Number: {len(sample2)}'
+    else:
+        dsp_line2 = f'Male - Mean: {np.mean(sample2)}, Std: {np.std(sample2)}, Number: {len(sample2)}'
+
+    if len(sample3) > 1:
+        dsp_line3 = f'Non-Binary - Mean: {np.mean(sample3):.2f}, Std: {np.std(sample3):.3f}, Number: {len(sample3)}'
+    else:
+        dsp_line3 = f'Non-Binary - Mean: {np.mean(sample3)}, Std: {np.std(sample3)}, Number: {len(sample3)}'
+
     if len(sample1) > 1 and len(sample2) > 1:
         pv12 = ttest_ind(sample1, sample2, equal_var=False).pvalue
+        dsp_line4 = f'P-Value: {pv12:.6f} (Female vs. Male)'
     else:
-        pv12 = 'No enough data'
+        dsp_line4 = f'P-Value: No enough data (Female vs. Male)'
 
     if len(sample1) > 1 and len(sample3) > 1:
         pv13 = ttest_ind(sample1, sample3, equal_var=False).pvalue
+        dsp_line5 = f'P-Value: {pv13:.6f} (Female vs. Non-Binary)'
     else:
-        pv13 = 'No enough data'
+        dsp_line5 = f'P-Value: No enough data (Female vs. Non-Binary)'
 
     if len(sample2) > 1 and len(sample3) > 1:
         pv23 = ttest_ind(sample2, sample3, equal_var=False).pvalue
+        dsp_line6 = f'P-Value: {pv23:.6f} (Male vs. Non-Binary)'
     else:
-        pv23 = 'No enough data'
-
-    dsp_line1 = f'Female - Mean: {np.mean(sample1):.2f}, Std: {np.std(sample1):.3f}, Number: {len(sample1)}'
-    dsp_line2 = f'Male - Mean: {np.mean(sample2):.2f}, Std: {np.std(sample2):.3f}, Number: {len(sample2)}'
-    dsp_line3 = f'Non-Binary - Mean: {np.mean(sample3):.2f}, Std: {np.std(sample3):.3f}, Number: {len(sample3)}'
-
-    dsp_line4 = f'P-Value: {pv12:.6f} (Female vs. Male)'
-    dsp_line5 = f'P-Value: {pv13:.6f} (Female vs. Non-Binary)'
-    dsp_line6 = f'P-Value: {pv23:.6f} (Male vs. Non-Binary)'
+        dsp_line6 = f'P-Value: 'No enough data' (Male vs. Non-Binary)'
 
     # output = str(all_samples)
     # print(all_samples)
@@ -86,8 +98,8 @@ def index():
 #         return_text += f'{numbers[i]}, {genders[i]}\n'
 #     return return_text
 
-@app.route('/reset')
-def reset():
+@app.route('/reset_secure')
+def reset_secure():
     db.drop_all()
     db.create_all()
     db.session.commit()
