@@ -7,7 +7,7 @@ from sqlalchemy.sql import func
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://vseryxnppudcar:9b8024182a9e9b69cf2cf7ea5da8446142c4a83219cf6f9d358e50742f9af8fc@ec2-44-206-204-65.compute-1.amazonaws.com:5432/da5jm4vashv4et'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://vseryxnppudcar:9b8024182a9e9b69cf2cf7ea5da8446142c4a83219cf6f9d358e50742f9af8fc@ec2-44-206-204-65.compute-1.amazonaws.com:5432/da5jm4vashv4et'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
