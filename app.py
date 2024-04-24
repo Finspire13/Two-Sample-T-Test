@@ -1,6 +1,29 @@
 from flask import Flask, request, render_template
+import os
+from flask import url_for, redirect
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import func
+
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] =\
+        'sqlite:///' + os.path.join(basedir, 'database.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+
+
+class Sample(db.Model):
+    sample_id = db.Column(db.Integer, primary_key=True)
+    time = db.Column(db.String(100), nullable=False)
+    gender = db.Column(db.String(100), nullable=False)
+    def __repr__(self):
+        return f'<Sample {self.sample_id}>'
+
+
+
 
 numbers = []
 genders = []

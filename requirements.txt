@@ -2,3 +2,5 @@ flask
 numpy
 scipy
 gunicorn
+Flask-SQLAlchemy
+psycopg2
