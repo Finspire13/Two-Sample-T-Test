@@ -24,8 +24,7 @@ def result():
     # else:
     #     avg = sum(numbers) / len(numbers)
     #     return f'The average value is: {avg}'
-    return f'{str(numbers)}, {str(genders)}'
-
+    return '_'.join(numbers) + '_'.join(genders)
 
 @app.route('/reset')
 def reset():
