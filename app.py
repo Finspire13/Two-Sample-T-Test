@@ -52,11 +52,12 @@ def index():
 #         return_text += f'{numbers[i]}, {genders[i]}\n'
 #     return return_text
 
-# @app.route('/reset')
-# def reset():
-#     numbers = []
-#     genders = []
-#     return 'Reset Successfully!'
+@app.route('/reset')
+def reset():
+    db.drop_all()
+    db.create_all()
+    db.session.commit()
+    return 'Reset Successfully!'
 
 if __name__ == '__main__':
     app.run(debug=True)
