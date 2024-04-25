@@ -9,7 +9,8 @@ from scipy.stats import ttest_ind
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://vseryxnppudcar:9b8024182a9e9b69cf2cf7ea5da8446142c4a83219cf6f9d358e50742f9af8fc@ec2-44-206-204-65.compute-1.amazonaws.com:5432/da5jm4vashv4et'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+# 'postgres://ygzfzfiokzvpky:73247d53a2bef12c9a8f20e8f039ff07dd81b7217c76e900a8aaa3399f54d6eb@ec2-52-20-188-247.compute-1.amazonaws.com:5432/ddnf73h9ceb9ct'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = "my super secret key that no one is supposed to know"
 
