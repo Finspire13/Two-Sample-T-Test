@@ -10,7 +10,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 database_url = os.environ['DATABASE_URL']
-database_url = 'postgresql:' + database_url.split(':')[1]
+database_url = 'postgresql:' + ':'.join(database_url.split(':')[1:])
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 # 'postgres://ygzfzfiokzvpky:73247d53a2bef12c9a8f20e8f039ff07dd81b7217c76e900a8aaa3399f54d6eb@ec2-52-20-188-247.compute-1.amazonaws.com:5432/ddnf73h9ceb9ct'
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
